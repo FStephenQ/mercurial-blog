@@ -1,0 +1,4 @@
+<form method="post" name="form1" action="script/login.php">
+<input type="text" name="username" /></br>
+<input type="password"  name="password" />
+<input type="submit" value="Sign in" />

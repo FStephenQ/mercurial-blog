@@ -1,0 +1,11 @@
+<ul id="navigation">
+<li>&#9791 <a href="index.php?content=blog.php">Main</a> &#9791 </li>
+<li><a href="index.php?content=bio">Bio</a> &#9791 </li>
+<li><a href="index.php?content=archive.php">Blog Archive</a> &#9791 </li>
+<li><a href="index.php?content=contact">Contact Me</a> &#9791 </li>
+<span id='hideAuth'><li><a href="/cgi-bin/mailman/listinfo">Mailing Lists</a> &#9791 </li><li><a href="https://mercuryq.net/index.php?content=login">Login</a></li></span>
+<span id='onlyfstephen'><li><a href="index.php?content=video.php">Videos</a> &#9791 </li>
+<li><a href="index.php?content=upload.php">Upload</a> &#9791 </li><li><a href="index.php?content=logout.php">Logout</a></li> </span> &#9791
+<li><a href="http://"shell_exec("cat /home/music/ip")>Raspberry Pi</a> &#9791</li>
+</ul>
+

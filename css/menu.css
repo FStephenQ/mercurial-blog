@@ -1,0 +1,74 @@
+body {
+	padding:0px;
+	font-family:verdana, arial, helvetica, sans-serif;
+	color:black;
+	background-color:lightgrey;
+	text-align: center;
+	}
+h1 {
+	font-size:30px;
+	line-height:30px;
+	font-weight:900;
+	color:red;
+	}
+ul#navigation {
+	list-style: none;
+	}
+p {
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	margin: 0 auto;
+	padding:0px;
+	opacity: 0.9;
+	}
+a {
+	color:#09c;
+	font-size:20px;
+	text-decoration:none;
+	font-weight:600;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+a:hover {color: blue;}
+#Header {
+	background: silver;
+	border: small solid black;
+	opacity:0.8;
+	}
+#title-area {
+	float: left;
+	overflow:hidden;
+	width: 30%;
+}
+#title {
+	font-family: 'Oswald', arial, serif;
+	font-size:30px;
+	line-height: 1.4;
+	margin: 12px 0 0 32px;
+	text-shadow: 0 1px #333;
+}
+#Header .menu-area{
+	float: right;
+	width:65%;
+}
+#signinButton {float:right;
+}
+#hideAuth {
+	display: inline;
+}
+#onlyfstephen{
+	display: none;
+}
+#Content {
+	margin: 0 auto;
+	padding:10px;
+	background: silver;
+	border: thin solid black;
+	width: 800px;
+	text-align: left;
+	float: top;
+	opacity: 0.8;
+	}
+ul#navigation li{
+	display:inline;
+	white-space:nowrap;
+	margin: 0 auto;
+}
