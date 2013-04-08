@@ -1,7 +1,15 @@
 <?php
-foreach(glob('php/*') as $p){
+//Define global variables
+$GLOBALS['sensitive-dir']= '/var/www-sensitive/';
+$GLOBALS['default-display']= 'blog.php';
+$GLOBALS['default-method'] = 'foo';
+
+//import php files to be run
+foreach(glob('php/*') as $p){ //yes this is stupid
 	include($p);
 }
+
+//set the content for this page.
 $file = $_GET['content'];
 	if( $file == null){
 		$file = 'blog.php';
@@ -27,7 +35,7 @@ $ext = substr(strrchr($file,'.'),1);
 if($ext == 'php'){
 	$file = strstr($file,'.',true);
 	$instance = new $file();
-	$instance->foo();
+	$instance->$GLOBALS['default-method']();
 }
 elseif($ext == 'txt'){
 	echo nl2br(file_get_contents('blogs/'.$file));
@@ -45,14 +53,12 @@ else{
 }?>
 </div>
 <script type=text/javascript src=js/cling.js />
- <?php
+ <?php //If there is a user logged in, hide the things they dont need, and display the ones that they do
 	if($_SESSION['loggedin']==true){
-?>
-	<script type=text/javascript>
-	document.getElementById('hideAuth').style.display = 'none';
-	document.getElementById('onlyfstephen').style.display = 'inline';
-	</script>
-<?php
+		echo '<script type=text/javascript>';
+		echo "document.getElementById('hideAuth').style.display = 'none';";
+	echo "document.getElementById('only".$_SESSION['username']."').style.display = 'inline';";
+	echo '</script>';
 	}	
 ?>
 	</body>

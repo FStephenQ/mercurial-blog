@@ -1,7 +1,7 @@
 <?php
 $username = $_POST['username'];
 $password = sha1($_POST['password']);
-$dbhandle = sqlite_open('/var/web-sensitive/db/php.db', 0666, $error);
+$dbhandle = sqlite_open($GLOBALS['sensitive-dir'].'db/php.db', 0666, $error);
 
 $query = 'SELECT username,password_sha1 FROM user';
 $result = sqlite_query($dbhandle, $query);
