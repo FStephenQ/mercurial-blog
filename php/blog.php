@@ -9,6 +9,7 @@ $num = 0;
 foreach($posts as $p){
 	echo '<div id="content"><a name='.basename($p).' style="color: black; size: 18px;"></a>';
 	echo nl2br(file_get_contents($p));
+	echo '<hr width="80%" size="5">';
 	if($num != 0){
 		echo "<a href=index.php#".$last.">Previous</a>";
 	}

@@ -21,16 +21,23 @@ p {
 	opacity: 0.9;
 	}
 a {
-	color:#09c;
+	color:#098;
 	font-size:20px;
 	text-decoration:none;
 	font-weight:600;
 	font-family:verdana, arial, helvetica, sans-serif;
 	}
-a:hover {color: blue;}
+#content p a{font-size: 11px;}
+#Header a{
+}
+#Header a:hover {
+	color:#06f;
+	font-style: italic;
+}
+#content a:hover { color: #06f;}
 #Header {
 	background: silver;
-	border: small solid black;
+	border: 1px outset #999;
 	opacity:0.8;
 	}
 #title-area {
@@ -51,6 +58,11 @@ a:hover {color: blue;}
 }
 #signinButton {float:right;
 }
+#toplinkbox{
+	position: fixed;
+	float: left;
+	display: none;
+}
 #hideAuth {
 	display: inline;
 }
@@ -64,11 +76,15 @@ a:hover {color: blue;}
 	border: thin solid black;
 	width: 800px;
 	text-align: left;
-	float: top;
+	-moz-box-shadow: 3px 3px 6px 4px #000000;
+	-webkit-box-shadow: 3px 3px 6px 4px #000000;
+	box-shadow: 3px 3px 6px 4px #000000;
 	opacity: 0.8;
 	}
 ul#navigation li{
-	display:inline;
+	display:inline-block;
 	white-space:nowrap;
 	margin: 0 auto;
-}
+	padding: 10px;
+	background: #c1c1c1
+	}

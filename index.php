@@ -20,7 +20,7 @@ $file = $_GET['content'];
 <h1 id=title>F. Stephen Quaratiello's WebPage</h1>
 <?php echo file_get_contents("data/menu"); ?>
 </div>
-
+</br>
 <div id="content" >
 <?php 
 $ext = substr(strrchr($file,'.'),1);
@@ -35,9 +35,16 @@ elseif($ext == 'txt'){
 else{
 	echo $_SESSION['flash_error'];
 	$_SESSION['flash_error'] = null;
-	echo file_get_contents('data/'.$file); 
+	$outputfile = nl2br(file_get_contents('data/'.$file));
+	if($outputfile == null){
+		echo "<h2>ERROR: FILE NOT FOUND</h2>";
+	}
+	else{
+		echo $outputfile; 
+	}
 }?>
 </div>
+<script type=text/javascript src=js/cling.js />
  <?php
 	if($_SESSION['loggedin']==true){
 ?>

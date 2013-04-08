@@ -9,7 +9,7 @@ $result = sqlite_query($dbhandle, $query);
 while($row = sqlite_fetch_array($result, SQLITE_ASSOC)){
 	if($row['username']==$username){
 		if($row['password_sha1']==$password){
-			$_SESSION['flash_error']= 'whut';
+			#$_SESSION['flash_error']= 'whut';
 			$_SESSION['loggedin'] = TRUE; 
 			$_SESSION['username'] = $username;
 			header("Location: /index.php");
@@ -18,6 +18,7 @@ while($row = sqlite_fetch_array($result, SQLITE_ASSOC)){
 if($_SESSION['loggedin']!= TRUE){
 	$_SESSION['flash_error'] = $error;
 		#"Incorrect Username or Password";
-	header("Location: https://mercuryq.net/index.php?content=login");
+	header("Location: https://mercuryq.net/index.php?content=loginform.php");
+	$_SESSION['numtries'] += 1;
 }
 ?>
