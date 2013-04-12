@@ -1,6 +1,6 @@
 <?php
 //Define global variables
-$GLOBALS['sensitive-dir']= '/var/www-sensitive/';
+$GLOBALS['sensitive-dir']= '/var/web-sensitive/';
 $GLOBALS['default-display']= 'blog.php';
 $GLOBALS['default-method'] = 'foo';
 
@@ -20,7 +20,7 @@ $file = $_GET['content'];
 		<title>F. Stephen Quaratiello</title>
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 <meta charset="utf-8"/>
-
+<script src="js/change.js"></script>
 	</head>
 <body>
 
@@ -52,14 +52,19 @@ else{
 	}
 }?>
 </div>
-<script type=text/javascript src=js/cling.js />
+ <script type=text/javascript>
  <?php //If there is a user logged in, hide the things they dont need, and display the ones that they do
-	if($_SESSION['loggedin']==true){
-		echo '<script type=text/javascript>';
-		echo "document.getElementById('hideAuth').style.display = 'none';";
-	echo "document.getElementById('only".$_SESSION['username']."').style.display = 'inline';";
-	echo '</script>';
+ if($_SESSION['username']=='fstephen'){
+?>
+	
+	
+	
+		document.getElementById('hideAuth').style.display = 'none';
+		document.getElementById('onlyfstephen').style.display = 'inline';
+	</script>;
+<?php
 	}	
 ?>
+<script type=text/javascript src=js/cling.js />
 	</body>
 </html>
