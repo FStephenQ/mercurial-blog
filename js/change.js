@@ -5,7 +5,7 @@ var music = document.getElementById('music');
 music.src=('music/playlist/'+location);
 music.load();
 music.play();
-music.addEventListener('ended',randomSong,false);
+//music.addEventListener('ended',randomSong,false);
 }
 function randomSong(){
 	var nextSong = document.getElementById('select1').options;

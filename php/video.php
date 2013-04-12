@@ -4,7 +4,7 @@ class video{
 		$music = glob("/home/music/playlist/*.mp3");
 		$choice = basename($music[rand(0,count($music))]);
 		echo '<h2 id="musictitle">'.$choice.'</h2>';
-		echo '<audio id="music" preload="auto" tabindex="0" controls="">';
+		echo '<audio id="music" preload="auto" tabindex="0" controls="" onended="randomSong()">';
 		echo '<source src="music/playlist/'.$choice.'">';
 		echo '</audio>';
 		echo '<button type="button" onclick="randomSong()">Random</button>';
