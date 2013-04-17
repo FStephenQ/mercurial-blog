@@ -17,9 +17,10 @@ $file = $_GET['content'];
 ?>
 <html>
 	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+		<meta content="utf-8" http-equiv="encoding">
 		<title>F. Stephen Quaratiello</title>
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
-<meta charset="utf-8"/>
 <script src="js/change.js"></script>
 	</head>
 <body>
@@ -56,11 +57,10 @@ else{
  <?php //If there is a user logged in, hide the things they dont need, and display the ones that they do
  if($_SESSION['username']=='fstephen'){
 ?>
+
+	replaceStyle(".hideAuth","none");
+	replaceStyle(".onlyfstephen","inline");
 	
-	
-	
-		document.getElementById('hideAuth').style.display = 'none';
-		document.getElementById('onlyfstephen').style.display = 'inline';
 	</script>;
 <?php
 	}	

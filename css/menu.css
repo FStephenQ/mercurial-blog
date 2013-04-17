@@ -63,10 +63,10 @@ a {
 	float: left;
 	display: none;
 }
-#hideAuth {
+.hideAuth {
 	display: inline;
 }
-#onlyfstephen{
+.onlyfstephen{
 	display: none;
 }
 #Content {

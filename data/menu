@@ -3,11 +3,11 @@
 <li><a href="index.php?content=bio">Bio</a>  </li>
 <li><a href="index.php?content=archive.php">Blog Archive</a>  </li>
 <li><a href="index.php?content=contact">Contact Me</a>  </li>
-<span id='hideAuth'>
+<li><a href="index.php?content=video.php">Media</a>  </li>
+<span class='hideAuth'>
 <li><a href="/cgi-bin/mailman/listinfo">Mailing Lists</a>  </li>
 <li><a href="https://mercuryq.net/index.php?content=loginform.php">Login</a>  </li>
 </span>
-<span id='onlyfstephen'><li><a href="index.php?content=video.php">Videos</a>  </li>
-<li><a href="index.php?content=upload.php">Upload</a>  </li><li><a href="index.php?content=logout.php">Logout</a></li> </span> 
+<span class='onlyfstephen'><li><a href="index.php?content=upload.php">Upload</a>  </li><li><a href="index.php?content=logout.php">Logout</a></li> </span> 
 </ul>
 
