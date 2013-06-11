@@ -1,7 +1,8 @@
 <?php
 class video{
 	function foo(){
-//$dbhandle = sqlite_open('/var/web-sensitive/db/php.db', 0666, $error);
+		//$dbhandle = sqlite_open('/var/web-sensitive/db/php.db', 0666, $error);
+		//
 //$query = 'SELECT username,password_sha1 FROM user';
 //$result = sqlite_query($dbhandle, $query);
 //while($row = sqlite_fetch_array($result, SQLITE_ASSOC)){
