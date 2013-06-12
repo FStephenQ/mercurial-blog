@@ -16,7 +16,7 @@ class video{
 		echo '<select id="select1" onchange="change(this.value)"  size="1">';
 		echo '<option value="">Pick a Song!</option>';
 		for($i = 0; $i<=count($music); $i++){
-			$name = substr(basename($music[$i]),0,-4);
+			$name = ''.substr(basename($music[$i]),0,-4);
 			echo '</br><option value="'.$name.'">'.$name.'</option>';
 		}
 		echo '</select>';

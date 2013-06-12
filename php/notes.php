@@ -10,6 +10,12 @@ class notes{
 			echo "</textarea>";
 			echo "<input type='submit' value='Submit'>";
 			echo"</form>";
+			echo"</br></br</br>";
+			echo "<ul>";
+			foreach(glob("/var/web-sensitive/notes/*") as $v){
+				echo "<li><a href='script/decrypt.php?target=".basename($v)."'>".basename($v)."</a></li>";
+			}
+
 		}
 	}
 }

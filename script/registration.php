@@ -3,7 +3,7 @@ $username = str_replace(array(' ',';',"'",'"','(',')',','),"",$_POST['username']
 $password = sha1($_POST['password']);
 $email = $_POST('email');
 $code = sha1($_POST('secretCode'));
-if($code == file_get_contents("/var/web-sensitive/code")){
+if($code == fread(fopen("/var/web-sensitive/code","r"))){
 $dbhandle = sqlite_open('/var/web-sensitive/db/php.db', 0666, $error);
 $query = 'INSERT INTO user VALUES("'.$username.'","'.$password.'");';
 			$_SESSION['flash_error']= 'Thank You for registering';

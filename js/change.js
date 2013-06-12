@@ -1,6 +1,6 @@
 function change(location){
 var title = document.getElementById('musictitle');
-title.innerHTML = location;
+title.innerHTML = ""+location;
 var music = document.getElementById('music');
 if(!!music.canPlayType('audio/ogg') === true){
 	location = location+'.ogg';
