@@ -10,7 +10,7 @@ while($row = sqlite_fetch_array($result, SQLITE_ASSOC)){
 	if($row['username']==$username){
 		if($row['password_sha1']==$password){
 			#$_SESSION['flash_error']= 'whut';
-			$_SESSION['loggedin'] = 'TRUE'; 
+			$_SESSION['loggedin'] = '1'; 
 			$_SESSION['username'] = $username;
 			header("Location: /index.php");
 			}}}
