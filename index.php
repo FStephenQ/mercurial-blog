@@ -53,9 +53,10 @@ else{
 	}
 }?>
 </div>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">MercuryQ</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mercuryq.net" property="cc:attributionName" rel="cc:attributionURL">F. Stephen Quaratiello</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
  <script type=text/javascript>
  <?php //If there is a user logged in, hide the things they dont need, and display the ones that they do
- if($_SESSION['username']=='fstephen'){
+ if($_SESSION['loggedin']=='1'){
 ?>
 
 	replaceStyle(".hideAuth","none");

@@ -8,6 +8,6 @@
 <li><a href="/cgi-bin/mailman/listinfo">Mailing Lists</a>  </li>
 <li><a href="https://mercuryq.net/index.php?content=loginform.php">Login</a>  </li>
 </span>
-<span class='onlyfstephen'><li><a href="index.php?content=upload.php">Upload</a>  </li><li><a href="index.php?content=notes.php">Notes</a></li><li><a href="index.php?content=logout.php">Logout</a></li> </span> 
+<span class='onlyfstephen'><li><a href="/jargon-4.4.7/html/index.html">Jargon</a>  </li><li><a href="index.php?content=notes.php">Notes</a></li><li><a href="index.php?content=logout.php">Logout</a></li> </span> 
 </ul>
 

@@ -1,11 +1,21 @@
 <?php
-if($_SESSION['username'] != 'fstephen'){
-	header("Location: /index.php");
+$keydir = "/var/web-sensitive/keys/";
+$notedir ="/var/web-sensitive/notes";
+$username = "";
+$sender = "";
+if(isset($_GET['sender'])){
+	$keydir ="/var/web-sensitive/keys/external/";
+	$notedir = "/var/web-sensitive/notes/external/";
+	$username = $_GET['sender'];
+	$sender = "&sender=".$username;
 }
 else{
+	$username = $_SESSION['username'];
+	$notedir = "/var/web-sensitive/notes/".$username."/";
+}
 	$target = $_GET['target'];
 	if($_POST['passphrase'] == NULL){
-		echo "<form method='post' name='form3' action='decrypt.php?target=".$target."'>";
+		echo "<form method='post' name='form3' action='decrypt.php?target=".$target.$sender."'>";
 		echo "<input type='password' name='passphrase' />";
 		echo "<input type='submit' value='Submit' />";
 		echo "</form>";
@@ -13,14 +23,19 @@ else{
 	else{
 		putenv("GNUPGHOME=/tmp");
 		$gnupg_obj = gnupg_init();
-		$fingerprints = gnupg_import($gnupg_obj,file_get_contents("/var/web-sensitive/private.key"));
+		$fingerprints = gnupg_import($gnupg_obj,file_get_contents($keydir.$username.".sec"));
 		$fingerprint = $fingerprints['fingerprint'];
 		$passphrase = $_POST['passphrase'];
 		if(gnupg_adddecryptkey($gnupg_obj,$fingerprint,$passphrase)){
 			$_POST['passphrase'] = NULL;
 			$passphrase = NULL;
-			echo gnupg_decrypt($gnupg_obj,file_get_contents("/var/web-sensitive/notes/".$target));
-			echo "</br></br</br>";
+			$plaintext = "";
+	$info = gnupg_decryptverify($gnupg_obj,file_get_contents($notedir.$target), $plaintext);
+			echo $plaintext;
+			echo "</br></br></br>";
+			$sender= substr($target, 0, -10); #Need to implement actual key verification.
+			echo "Sent by:".$sender;
+			echo "</br></br></br>";
 			echo "<a href='https://www.mercuryq.net/index.php'>Home</a>";
 			gnupg_cleardecryptkeys($gnupg_obj);
 		}
@@ -28,6 +43,5 @@ else{
 			header("Location: /index.php");
 		}
 	}
-}
 
 ?>

@@ -21,7 +21,7 @@ class video{
 		}
 		echo '</select>';
 		echo '</div>';
-if($_SESSION['username']=='fstephen'){
+if($_SESSION['loggedin']=='1'){
 		echo "<div id='content'>";
 		echo "<center><video id='video' width='500' height='500' controls></video>";
 		echo "<select id='select2' onchange='changeVideo(this.value)'>";
