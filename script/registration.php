@@ -9,12 +9,12 @@ if($code == file_get_contents("/var/web-sensitive/code")){
 	$result1 = sqlite_query($dbhandle, $check);
 	if($result1 == $username){
 		$_SESSION['flash_error'] = "Username already taken";
-		header("Location:/index.php?content=register.php");
+		header("Location:/php/register.php");
 	}
 	else{
 $query = "INSERT INTO \"user\" VALUES('".$username."','".sha1($password)."','".$email."')";
 $result = sqlite_query($dbhandle, $query);
-$batch ="Key-Type: RSA
+$batch ="'Key-Type: RSA
 	Key-Length: 2048
 	Subkey-Type:RSA
 	Subkey-Length: 2048
@@ -25,19 +25,17 @@ $batch ="Key-Type: RSA
 	%pubring /var/web-sensitive/keys/".$username.".pub
 	%secring /var/web-sensitive/keys/".$username.".sec
 	%commit
-	%echo Done
+	%echo Done'
 		";
-fwrite(fopen("/var/web-sensitive/batch".$username,"w"), $batch);
-exec("export HOME='/tmp';gpg --batch --gen-keys /var/web-sensitive/batch".$username);
-exec("rm /var/web-sensitive/batch".$username);
+exec("export HOME='/tmp'; echo ".$batch." | gpg --batch --gen-key".$username);
 exec("mkdir /var/web-sensitive/notes/".$username);
 $_SESSION['flash_error']= 'Thank You for registering';
-header("Location: /index.php?content=loginform.php");
+header("Location: /php/loginform.php");
 	}
 }
 else{
 	$_SESSION['flash_error'] = "Incorrect Code.";
-	header("Location: https://mercuryq.net/index.php?content=register.php");
+	header("Location: https://mercuryq.net/php/register.php");
 	$_SESSION['numtries'] +=1;
 }
 

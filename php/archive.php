@@ -1,13 +1,8 @@
 <?php
-class archive{
-function posts_array(){
-$dir =  glob("/var/www/blogs/*");
-uasort($dir, array("archive","newest"));
-return $dir;
-}
-
-function foo(){
-$H = $this->posts_array();
+include("/var/www/basics.php");
+print_head();
+echo "<div id='content'>";
+$H = posts_array();
 echo "<h2> This is the archive of all my blog posts</h2>";
 echo"<ul>";
 foreach($H as $P){
@@ -16,9 +11,6 @@ foreach($H as $P){
 		echo "<li> <a href='$P'> $F </a> </li>";
 	}
 }
-}
-static function newest($a, $b){
-	return filemtime($b)-filemtime($a);
-}
-}
+echo "</div>";
+print_tail();
 ?>

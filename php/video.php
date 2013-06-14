@@ -1,6 +1,7 @@
 <?php
-class video{
-	function foo(){
+include("/var/www/basics.php");
+print_head();
+echo "<div id='content'>";
 		//$dbhandle = sqlite_open('/var/web-sensitive/db/php.db', 0666, $error);
 		//
 //$query = 'SELECT username,password_sha1 FROM user';
@@ -26,12 +27,11 @@ if($_SESSION['loggedin']=='1'){
 		echo "<center><video id='video' width='500' height='500' controls></video>";
 		echo "<select id='select2' onchange='changeVideo(this.value)'>";
 		echo '<option value="">Pick A Video!</option>';
-		foreach(glob("videos/*.webm") as $v){
+		foreach(glob("/var/www/videos/*.webm") as $v){
 			echo '<option value="'.basename($v).'">'.strstr(basename($v),'.',true).'</option>';
 		}
 		echo "</select></center>";
 		echo "</div>";
 }
-}
-}
+print_tail();
 ?>

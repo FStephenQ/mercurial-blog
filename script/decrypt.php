@@ -1,4 +1,5 @@
 <?php
+
 $keydir = "/var/web-sensitive/keys/";
 $notedir ="/var/web-sensitive/notes";
 $username = "";
@@ -33,10 +34,14 @@ else{
 	$info = gnupg_decryptverify($gnupg_obj,file_get_contents($notedir.$target), $plaintext);
 			echo $plaintext;
 			echo "</br></br></br>";
-			$sender= substr($target, 0, -10); #Need to implement actual key verification.
-			echo "Sent by:".$sender;
+			$sender= substr($target, 1, -10); #Need to implement actual key verification.
+			echo "Sent by: ".$sender;
 			echo "</br></br></br>";
-			echo "<a href='https://www.mercuryq.net/index.php'>Home</a>";
+			if(substr($target,0,1) == "u"){
+			exec("mv ".$notedir.$target." ".$notedir."r".substr($target,1));
+			}	
+			echo "<a href='/index.php'>Home</a></br>
+				<a href='/php/notes.php?return=".$sender."'>Reply</a>";
 			gnupg_cleardecryptkeys($gnupg_obj);
 		}
 		else{

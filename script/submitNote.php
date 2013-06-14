@@ -3,14 +3,14 @@ $recipient = $_POST['recipient'];
 $pass = $_POST['password'];
 $method = $_POST['method'];
 $note = $_POST['textarea'];
-if(method == "internal"){
+if($method == "internal"){
 	putenv("GNUPGHOME=/tmp");
 	$gnupg_obj = gnupg_init();
 	$fingerprints = gnupg_import($gnupg_obj,file_get_contents('/var/web-sensitive/keys/'.$recipient.'.pub'));
 	$fingerprint = $fingerprints['fingerprint'];
 	if($fingerprint == NULL){
 		$_SESSION['flash_error'] = "USER NOT FOUND";
-		header("Location: /index.php");
+		header("Location: /php/notes.php");
 	}
 	else{
 		gnupg_addencryptkey($gnupg_obj,$fingerprint);
@@ -18,10 +18,10 @@ if(method == "internal"){
 		$fingerprint =$fingerprints['fingerprint'];
 		gnupg_addsignkey($gnupg_obj, $fingerprint, $pass);
 		$cyphertext = gnupg_encryptsign($gnupg_obj, $note);
-		$filename = fopen('/var/web-sensitive/notes/'.$recipient.'/'.$_SESSION['username'].time(), "w");
+		$filename = fopen('/var/web-sensitive/notes/'.$recipient.'/u'.$_SESSION['username'].time(), "w");
 		fwrite($filename, $cyphertext);
 		fclose($filename);
-		header("Location: /index.php");
+		header("Location: /php/notes.php");
 	}
 }
 else{
@@ -47,7 +47,7 @@ else{
 	$fingerprint = $fingerprints['fingerprint'];
 	gnupg_addencryptkey($gnupg_obj,$fingerprint);
 	$cyphertext = gnupg_encrypt($gnupg_obj, $note);
-	$location = $_SESSION['username'].time();
+	$location = "u".$_SESSION['username'].time();
 	$filename = fopen('/var/web-sensitive/notes/external/'.$location,"w");
 	fwrite($filename, $cyphertext);
 	fclose($filename);

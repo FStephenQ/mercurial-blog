@@ -17,7 +17,7 @@ while($row = sqlite_fetch_array($result, SQLITE_ASSOC)){
 if($_SESSION['loggedin']== 'false'){
 	$_SESSION['flash_error'] = $error;
 		#"Incorrect Username or Password";
-	header("Location: https://mercuryq.net/index.php?content=loginform.php");
+	header("Location: https://mercuryq.net/php/loginform.php");
 	$_SESSION['numtries'] += 1;
 }
 ?>
