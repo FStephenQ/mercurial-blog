@@ -1,90 +1,168 @@
 body {
-	padding:0px;
-	font-family:verdana, arial, helvetica, sans-serif;
-	color:black;
-	background-color:lightgrey;
-	text-align: center;
-	}
-h1 {
-	font-size:30px;
-	line-height:30px;
-	font-weight:900;
-	color:red;
-	}
-ul#navigation {
-	list-style: none;
-	}
-p {
-	font:11px/20px verdana, arial, helvetica, sans-serif;
-	margin: 0 auto;
-	padding:0px;
-	opacity: 0.9;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #ccc;
+	background-color: #333;
 	}
 a {
-	color:#098;
-	font-size:20px;
-	text-decoration:none;
-	font-weight:600;
-	font-family:verdana, arial, helvetica, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+	color:  #ccc;
+	outline: none;
 	}
-#content p a{font-size: 11px;}
-#Header a{
-}
-#Header a:hover {
-	color:#06f;
-	font-style: italic;
-}
-#content a:hover { color: #06f;}
-#Header {
-	background: silver;
-	border: 1px outset #999;
-	opacity:0.8;
+a:visited {
+	color:  #ccc;
 	}
-#title-area {
-	float: left;
-	overflow:hidden;
-	width: 30%;
-}
-#title {
-	font-family: 'Oswald', arial, serif;
-	font-size:30px;
-	line-height: 1.4;
-	margin: 12px 0 0 32px;
-	text-shadow: 0 1px #333;
-}
-#Header .menu-area{
-	float: right;
-	width:65%;
-}
-#signinButton {float:right;
-}
-#toplinkbox{
-	position: fixed;
-	float: left;
+a:active {
+	color:  #ccc;
+	}
+a:hover {
+	color: #ccc;
+	text-decoration: underline;
+	}
+.ahem {
 	display: none;
+	}
+strong, b {
+	font-weight: bold;
+	}
+p {
+	font-size: 12px;
+	line-height: 22px;
+	margin-top: 20px;
+	margin-bottom: 10px; 
+	}
+
+/* weird ie5win bug: all line-height to font-size ratios must agree or box gets pushed around. UPDATE: this has turned out to be very rare. my current recommendation is IGNORE this warning. at the moment i'm leaving it in only in case the issue turns up again. possibly the original bug in march 2001 was caused by an unusual combination of factors, although this solved it at the time.*/
+
+h1 {
+	font-size: 24px;
+	line-height: 44px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+h2 {
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+h3 {
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+h4 {
+	font-size: 14px;
+	line-height: 26px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+h5 {
+	font-size: 12px;
+	line-height: 22px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+h6 {
+	font-size: 10px;
+	line-height: 18px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+img {
+	border: 0;
+	}
+.nowrap {
+	white-space: nowrap;
+	font-size: 10px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+/* must be combined with nobr in html for ie5win */
+	}
+.tiny {
+	font-size: 9px;
+	line-height: 16px;
+	margin-top: 15px;
+	margin-bottom: 5px; 
+	}	
+#header {
+	margin: 20px 20px 0px 20px;
+	padding: 10px;
+	border: 5px solid #ccc;
+	background: #666;
+	height: 100px; /* ie5win fudge begins */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	text-align: center;
+	height: 70px;
+	}
+html>body #header {
+	height: 70px; /* ie5win fudge ends */
+	}
+#navigation {
+	position: fixed;
+	top: 120px;
+	left: 0px;
+	margin: 20px;
+	padding: 10px;
+	border: 5px solid #ccc;
+	background: #666;
+	width: 150px; /* ie5win fudge begins */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width: 120px;
+	}
+ul#navigation{
+	list-style: none;
 }
+html>body #navigation {
+	width: 120px; /* ie5win fudge ends */
+	}
+#content {
+	margin: 20px 190px 20px 190px;
+	padding: 10px;
+	border: 5px solid #ccc;
+	background: #666;
+	}
+#login {
+	position: absolute;
+	top: 120px;
+	right: 0px; /* Opera5.02 will show a space at right when there is no scroll bar */
+	margin: 20px;
+	padding: 10px;
+	border: 5px solid #ccc;
+	background: #666;
+	width: 150px; /* ie5win fudge begins */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width: 120px;
+	}
+html>body #login {
+	width: 120px; /* ie5win fudge ends */
+	}
+pre {
+	font-size: 12px;
+	line-height: 22px;
+	margin-top: 20px;
+	margin-bottom: 10px; 
+	}
+
 .hideAuth {
 	display: inline;
 }
 .onlyfstephen{
 	display: none;
 }
-#Content {
-	margin: 0 auto;
-	padding:10px;
-	background: silver;
-	border: thin solid black;
-	width: 800px;
-	text-align: left;
-	-moz-box-shadow: 3px 3px 6px 4px #000000;
-	-webkit-box-shadow: 3px 3px 6px 4px #000000;
-	box-shadow: 3px 3px 6px 4px #000000;
-	opacity: 0.8;
-	}
-ul#navigation li{
-	display:inline-block;
-	white-space:nowrap;
-	margin: 0 auto;
-	padding: 10px;
-	background: #c1c1c1
-	}
+ul#messages {
+	list-style: none;
+}

@@ -1,13 +1,13 @@
 <ul id="navigation">
-<li> <a href="index.php?content=blog.php">Main</a>  </li>
-<li><a href="index.php?content=bio">Bio</a>  </li>
-<li><a href="index.php?content=archive.php">Blog Archive</a>  </li>
-<li><a href="index.php?content=contact">Contact Me</a>  </li>
-<li><a href="index.php?content=video.php">Media</a>  </li>
+<li> <a href="/index.php">Main</a>  </li>
+<li><a href="/php/bio.php">Bio</a>  </li>
+<li><a href="/php/archive.php">Blog Archive</a>  </li>
+<li><a href="/php/contact.php">Contact Me</a>  </li>
+<li><a href="/php/video.php">Media</a>  </li>
 <span class='hideAuth'>
 <li><a href="/cgi-bin/mailman/listinfo">Mailing Lists</a>  </li>
-<li><a href="https://mercuryq.net/index.php?content=loginform.php">Login</a>  </li>
+<li><a href="https://mercuryq.net/php/loginform.php">Login</a>  </li>
 </span>
-<span class='onlyfstephen'><li><a href="/jargon-4.4.7/html/index.html">Jargon</a>  </li><li><a href="index.php?content=notes.php">Notes</a></li><li><a href="index.php?content=logout.php">Logout</a></li> </span> 
+<span class='onlyfstephen'><li><a href="/jargon-4.4.7/html/index.html">Jargon</a>  </li><li><a href="/php/notes.php">Message</a></li><li><a href="/php/logout.php">Logout</a></li> </span> 
 </ul>
 
