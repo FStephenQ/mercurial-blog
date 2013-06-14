@@ -1,5 +1,6 @@
 <?php
-$username = sqlite_escape_string($_POST['username']);
+$usernames = preg_split("/[\s;|>]+/",sqlite_escape_string($_POST['username']));
+$username = $usernames[0];
 $password = $_POST['password'];
 $email = sqlite_escape_string($_POST['email']);
 $code = sha1($_POST['secretCode']);
@@ -14,20 +15,20 @@ if($code == file_get_contents("/var/web-sensitive/code")){
 	else{
 $query = "INSERT INTO \"user\" VALUES('".$username."','".sha1($password)."','".$email."')";
 $result = sqlite_query($dbhandle, $query);
-$batch ="'Key-Type: RSA
+$batch ='"Key-Type: RSA
 	Key-Length: 2048
 	Subkey-Type:RSA
 	Subkey-Length: 2048
-	Name-Real:".$username."
-	Name-Email: ".$email."
+	Name-Real:'.$username.'
+	Name-Email: '.$email.'
 	Expire-Date: 0
-	Passphrase:".$password."
-	%pubring /var/web-sensitive/keys/".$username.".pub
-	%secring /var/web-sensitive/keys/".$username.".sec
+	Passphrase:'.$password.'
+	%pubring /var/web-sensitive/keys/'.$username.'.pub
+	%secring /var/web-sensitive/keys/'.$username.'.sec
 	%commit
-	%echo Done'
-		";
-exec("export HOME='/tmp'; echo ".$batch." | gpg --batch --gen-key".$username);
+	%echo Done"'
+		;
+exec("export HOME='/tmp'; echo ".$batch."| gpg --batch --gen-key");
 exec("mkdir /var/web-sensitive/notes/".$username);
 $_SESSION['flash_error']= 'Thank You for registering';
 header("Location: /php/loginform.php");

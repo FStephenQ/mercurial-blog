@@ -15,8 +15,8 @@ echo $_SESSION['flash_error'];
 			}
 			echo "<form method='post' name='form2' action='/script/submitNote.php'>";
 			echo "<input type='radio' name='method' value='internal' checked>Internal  <input type='radio' name='method' value='external'>External (Email)</br>";
-			echo "Recipient: <input type='text' id='recipient' name='recipient' value='".$recip."' ></br>";
-			echo "<a href='/php/members'>Recipient List</a></br>";
+			echo "Recipient: <input type='text' id='recipient' name='recipient' value='".$recip."' >      <a href='/php/members'>Recipient List</a></br>";
+			echo "Message Text </br>";
 			echo "<textarea name='textarea' rows='5' cols='40' required>";
 			echo "</textarea>";
 			echo "</br>Passphrase: <input type='password' name='password'>";

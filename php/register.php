@@ -8,7 +8,7 @@ echo "<div id='content'>";
 		else{
 			echo $_SESSION['flash_error'];
 			$_SESSION['flash_error'] = null;
-echo '<form method="post" name="form5" action="/script/registration.php">';
+			echo '<form method="post" name="form5" action="/script/registration.php">';
 echo 'Username:<input type="text" name="username" /></br>';
 echo 'Password:<input type="password"  name="password" />';
 echo '</br>Email:   <input type="text" name="email" />';
