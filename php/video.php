@@ -13,7 +13,8 @@ echo "<div id='content'>";
 		echo '<audio id="music" preload="auto" tabindex="0" controls="" onended="randomSong()" onload="randomSong()">';
 		echo '</audio>';
 		echo '</br><button type="button" onclick="randomSong()">Random</button>';
-		echo '   <a href="#" id="downloadLink" class="onlyfstephen">Download</a></br>';
+		echo '   <a href="#" id="downloadLink" class="onlyfstephen">Download</a>';
+		echo '    <button id="playlistButton" type="button" onclick="addPlaylist()" class="onlyfstephen"> Add to playlist!</button></br>';
 		echo '<select id="select1" onchange="change(this.value)"  size="1">';
 		echo '<option value="">Pick a Song!</option>';
 		for($i = 0; $i<=count($music); $i++){
@@ -33,5 +34,19 @@ if($_SESSION['loggedin']=='1'){
 		echo "</select></center>";
 		echo "</div>";
 }
+echo "<script type='text/javascript'>
+	function addPlaylist(){
+		var ajax = getRequest();
+		var song = document.getElementById('musictitle').innerHTML;
+		ajax.onreadystatechange = function(){
+			if(ajax.readystate == 4){
+				}
+		}
+		ajax.open('GET','/script/playlist.php?song='+song, true);
+		ajax.send(null);
+		document.getElementById('playlistButton').style.visibility='hidden';
+		}
+</script>
+	";
 print_tail();
 ?>

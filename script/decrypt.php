@@ -1,5 +1,4 @@
 <?php
-
 $keydir = "/var/web-sensitive/keys/";
 $notedir ="/var/web-sensitive/notes";
 $username = "";
@@ -19,7 +18,6 @@ else{
 		echo "<form method='post' name='form3' action='decrypt.php?target=".$target.$sender."'>";
 		echo "<input type='password' name='passphrase' />";
 		echo "<input type='submit' value='Submit' />";
-		echo "</form>";
 	}
 	else{
 		putenv("GNUPGHOME=/tmp");
@@ -31,7 +29,7 @@ else{
 			$_POST['passphrase'] = NULL;
 			$passphrase = NULL;
 			$plaintext = "";
-	$plaintext = gnupg_decrypt($gnupg_obj,file_get_contents($notedir.$target));
+			$plaintext = gnupg_decrypt($gnupg_obj,file_get_contents($notedir.$target));
 			echo $plaintext;
 			echo "</br></br></br>";
 			$sender= substr($target, 1, -10); #Need to implement actual key verification.
