@@ -31,7 +31,7 @@ else{
 			$_POST['passphrase'] = NULL;
 			$passphrase = NULL;
 			$plaintext = "";
-	$info = gnupg_decryptverify($gnupg_obj,file_get_contents($notedir.$target), $plaintext);
+	$plaintext = gnupg_decrypt($gnupg_obj,file_get_contents($notedir.$target));
 			echo $plaintext;
 			echo "</br></br></br>";
 			$sender= substr($target, 1, -10); #Need to implement actual key verification.

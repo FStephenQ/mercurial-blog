@@ -8,7 +8,7 @@ if(!!music.canPlayType('audio/ogg') === true){
 else{
 	location = location+'.mp3';
 }
-music.src=('music/playlist/'+location);
+music.src=('/music/playlist/'+location);
 music.load();
 music.play();
 document.getElementById('downloadLink').href=("https://mercuryq.net/music/playlist/"+location);

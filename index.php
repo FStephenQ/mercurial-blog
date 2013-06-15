@@ -1,7 +1,7 @@
 <?php
 include("/var/www/basics.php");
 print_head();
-echo "<a name='top' style='color: black; text-align: center;'><h2>The Mercurial Blog</h2></a>";
+echo "<div id='content'><a name='top' style='color: black; text-align: center;'><h2>The Mercurial Blog</h2></a>";
 echo "</div></br>";
 $posts = posts_array();
 $num = 0;

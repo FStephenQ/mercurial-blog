@@ -25,33 +25,32 @@ if($method == "internal"){
 	}
 }
 else{
-	$username = rand(0,9999999);
+	$uname = rand(0,9999999);
 	$batch ="Key-Type: RSA
 		Key-Length: 2048
 		Subkey-Type:RSA
 		Subkey-Length: 2048
-		Name-Real:".$username."
+		Name-Real:".$uname."
 		Name-Email: ".$recipient."
 		Expire-Date: 0
 		Passphrase:".$pass."
-		%pubring /var/web-sensitive/keys/external/".$username.".pub
-		%secring /var/web-sensitive/keys/external/".$username.".sec
+		%pubring /var/web-sensitive/keys/external/".$uname.".pub
+		%secring /var/web-sensitive/keys/external/".$uname.".sec
 		%commit
-		%echo Done
-		";
-	fwrite(fopen("/var/web-sensitive/batch".$username,"w"), $batch);
-	exec('export HOME="/tmp";gpg --batch --gen-key /var/web-sensitive/batch'.$username);
-	exec("rm /var/web-sensitive/batch".$username);
-	$gnupg_obj = gnupg_init();
-	$fingerprints = gnupg_import($gnupg_obj,file_get_contents('/var/web-sensitive/keys/external/'.$username.'.pub'));
+		%echo Done";
+	exec('export HOME="/tmp"; echo "'.$batch.'"| gpg --batch --gen-key');
+	putenv("GNUPGHOME=/tmp");
+	$gnupg_ob = gnupg_init();
+	$file = file_get_contents('/var/web-sensitive/keys/external/'.$uname.'.pub');
+	$fingerprints = gnupg_import($gnupg_ob,$file);
 	$fingerprint = $fingerprints['fingerprint'];
-	gnupg_addencryptkey($gnupg_obj,$fingerprint);
-	$cyphertext = gnupg_encrypt($gnupg_obj, $note);
+	if(gnupg_addencryptkey($gnupg_ob,$fingerprint)){
+	$cyphertext = gnupg_encrypt($gnupg_ob, $note);
 	$location = "u".$_SESSION['username'].time();
 	$filename = fopen('/var/web-sensitive/notes/external/'.$location,"w");
 	fwrite($filename, $cyphertext);
 	fclose($filename);
-	$link = "https://www.mercuryq.net/script/decrypt.php?target=".$location."&sender=".$username;
+	$link = "https://www.mercuryq.net/script/decrypt.php?target=".$location."&sender=".$uname;
 	$message = "MercuryQ.net is a simple service to privately exchange information. All messages are secured on
 	our server with 2048-bit RSA encryption, via GNUPG. To view the message this person is sending you, simply click
 	on the link below and then enter the passphrase you and the sender agreed upon beforehand to see your message. 
@@ -63,5 +62,9 @@ else{
 	Thank you for using MercuryQ.net!";
 	mail($recipient, $_SESSION['username']." is sending you a message at mercuryq.net!", $message);
 	header("Location: /index.php");
+	}
+	else{
+		header("Location: /php/notes.php");
+	}
 }
 ?>
