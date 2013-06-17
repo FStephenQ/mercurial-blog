@@ -7,7 +7,16 @@ $head = "<html>
 		<meta content='utf-8' http-equiv='encoding'>
 		<title>MercuryQ</title>
 		<link rel='stylesheet' type='text/css' href='/css/menu.css' />
-		<script src='/js/change.js'></script>";
+		<script src='/js/change.js'></script>
+		<script src='/js/rsa.js'></script>
+		<script src='/js/aes-enc.js'></script>
+		<script src='/js/base64.js'></script>
+		<script src='/js/PGpubkey.js'></script>
+		<script src='/js/mouse.js'></script>
+<script src='/js/PGencode.js'></script>
+<script src='/js/PGdecode.js'></script>
+<script src='/js/cast5.js'></script>
+		<script src='/js/sha1.js'></script>";
 $body = '</head><body>
 
 <div id="header" class="header">
@@ -34,7 +43,7 @@ function print_tail(){
 	
 	</script>";
 	}	
-$tail = "<script type=text/javascript src=/js/cling.js />
+$tail = "
 	</body>
 	</html>";
 

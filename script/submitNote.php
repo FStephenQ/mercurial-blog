@@ -4,25 +4,10 @@ $pass = $_POST['password'];
 $method = $_POST['method'];
 $note = $_POST['textarea'];
 if($method == "internal"){
-	putenv("GNUPGHOME=/tmp");
-	$gnupg_obj = gnupg_init();
-	$fingerprints = gnupg_import($gnupg_obj,file_get_contents('/var/web-sensitive/keys/'.$recipient.'.pub'));
-	$fingerprint = $fingerprints['fingerprint'];
-	if($fingerprint == NULL){
-		$_SESSION['flash_error'] = "USER NOT FOUND";
-		header("Location: /php/notes.php");
-	}
-	else{
-		gnupg_addencryptkey($gnupg_obj,$fingerprint);
-		$fingerprints = gnupg_import($gnupg_obj,file_get_contents('/var/web-sensitive/keys/'.$_SESSION['username'].'.sec'));
-		$fingerprint =$fingerprints['fingerprint'];
-		gnupg_addsignkey($gnupg_obj, $fingerprint, $pass);
-		$cyphertext = gnupg_encryptsign($gnupg_obj, $note);
 		$filename = fopen('/var/web-sensitive/notes/'.$recipient.'/u'.$_SESSION['username'].time(), "w");
-		fwrite($filename, $cyphertext);
+		fwrite($filename, $note);
 		fclose($filename);
 		header("Location: /php/notes.php");
-	}
 }
 else{
 	$uname = rand(0,9999999);
@@ -41,6 +26,7 @@ else{
 	exec('export HOME="/tmp"; echo "'.$batch.'"| gpg --batch --gen-key');
 	putenv("GNUPGHOME=/tmp");
 	$gnupg_ob = gnupg_init();
+	gnupg_setarmor($gnupg_ob,1);
 	$file = file_get_contents('/var/web-sensitive/keys/external/'.$uname.'.pub');
 	$fingerprints = gnupg_import($gnupg_ob,$file);
 	$fingerprint = $fingerprints['fingerprint'];
