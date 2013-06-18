@@ -1,5 +1,5 @@
 <?php
-function print_head(){
+function print_head($crypto){
 	
 $head = "<html>
 	<head>
@@ -7,7 +7,9 @@ $head = "<html>
 		<meta content='utf-8' http-equiv='encoding'>
 		<title>MercuryQ</title>
 		<link rel='stylesheet' type='text/css' href='/css/menu.css' />
-		<script src='/js/change.js'></script>
+		<script src='/js/change.js'></script>";
+if($crypto){
+	$head = $head."
 		<script src='/js/rsa.js'></script>
 		<script src='/js/aes-enc.js'></script>
 		<script src='/js/base64.js'></script>
@@ -16,7 +18,8 @@ $head = "<html>
 <script src='/js/PGencode.js'></script>
 <script src='/js/PGdecode.js'></script>
 <script src='/js/cast5.js'></script>
-		<script src='/js/sha1.js'></script>";
+<script src='/js/sha1.js'></script>";
+}
 $body = '</head><body>
 
 <div id="header" class="header">

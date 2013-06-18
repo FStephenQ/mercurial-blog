@@ -1,7 +1,14 @@
 <?php
 $usernames = preg_split("/[\s;|>]+/",sqlite_escape_string($_POST['username']));
 $username = $usernames[0];
-$password = $_POST['password'];
+$password = $_SESSION['passphrase'];
+putenv("GNUPGHOME=/tmp");
+$gpg_obj = gnupg_init();
+gnupg_setarmor($gpg_obj, 1);
+$fingerprint = gnupg_import($gpg_obj, file_get_contents("/var/web-sensitive/main.sec"));
+$pa = file_get_contents('/var/web-sensitive/secret');
+gnupg_adddecryptkey($gpg_obj, $fingerprint['fingerprint'], $pa);
+$password1 = gnupg_decrypt($gpg_obj, $password);
 $email = sqlite_escape_string($_POST['email']);
 $code = sha1($_POST['secretCode']);
 if($code == file_get_contents("/var/web-sensitive/code")){
@@ -39,6 +46,4 @@ else{
 	header("Location: https://mercuryq.net/php/register.php");
 	$_SESSION['numtries'] +=1;
 }
-
-			
 ?>

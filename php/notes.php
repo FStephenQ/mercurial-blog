@@ -1,6 +1,6 @@
 <?php
 include("/var/www/basics.php");
-print_head();
+print_head(true);
 echo "<div id='content'>";
 echo $_SESSION['flash_error'];
 		if($_SESSION['loggedin'] != '1'){
