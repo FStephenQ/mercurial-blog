@@ -18,7 +18,10 @@ if($crypto){
 <script src='/js/PGencode.js'></script>
 <script src='/js/PGdecode.js'></script>
 <script src='/js/cast5.js'></script>
-<script src='/js/sha1.js'></script>";
+<script src='/js/sha1.js'></script>
+<script src='/js/sha1-other.js'></script>
+<script src='/js/utf8_encode.js'></script>
+<script src='/js/gibberishaes.js'></script>";
 }
 $body = '</head><body>
 
