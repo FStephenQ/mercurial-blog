@@ -1,5 +1,6 @@
 <?php
 include("/var/www/basics.php");
+include('/var/www/GibberishAES.php');
 $keydir = "/var/web-sensitive/keys/";
 $notedir ="/var/web-sensitive/notes";
 $username = "";
@@ -15,47 +16,41 @@ else{
 	$notedir = "/var/web-sensitive/notes/".$username."/";
 }
 	$target = $_GET['target'];
-if($_SESSION['passphrase'] == NULL){
+if($_POST['passphrase'] == NULL){
 	print_head(true);
-		echo "<div id='content'><form method='post' name='form3' id='form3' action='decrypt.php?target=".$target.$sender."'>";
+		echo "<div id='content'><form method='post' name='form3' id='form3' action=''>";
 		echo "<input type='password' name='passphrase' id='passphrase'/>";
 		echo "<button type='button' onclick='decrypt()' >Submit</button></br>
 		<input type='checkbox' id='in_brws' style='display:none;'/></div>";
 		echo "<script type='text/javascript'>
+		var pas;	
 			function decrypt(){
 				if(!document.getElementById('in_brws').checked===true){
 			var ajax = getRequest();
-		var pas = document.getElementById('passphrase').value;
+	pas = document.getElementById('passphrase').value;
 	var pub = new getPublicKey(".json_encode(file_get_contents("/var/web-sensitive/main.pub")).");
 		document.getElementById('passphrase').value='';
 		var cipher = doEncrypt(pub.keyid, 0, pub.pkey.replace(/\\n/g,''), pas);
-		ajax.open('POST','/script/addSes.php',true);
+		ajax.open('POST','/script/decrypt.php?target=".$target.$sender."',true);
 		ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		ajax.send('passphrase='+encodeURIComponent(cipher));
 		ajax.onreadystatechange = function(){
 			if(ajax.readyState === 4){
-	document.getElementById('form3').submit();
+				document.getElementById('content').innerHTML = ajax.responseText;
 	}
-}				
+	}				
 				}
 				else{
 					var passphrase = document.getElementById('passphrase').value;
 					if(passphrase === ''){
 						alert('Please enter a passphrase');
 					}
-else{
-	var a = [];
-	var b = [];
-	var c = [];
-	var d = [];
-	doDecrypt(a,b,c,d,key,passphrase);
-	alert('almost');
-	document.getElementById('content').innerHTML = doDecrypt(a,b,c,d,message,passphrase);
 }
-}
+};
+function finish(){
+				document.getElementById('plaintext').innerHTML = GibberishAES.dec(document.getElementById('plaintext').innerHTML, pas);
 }
 </script>
-
 	";
 	print_tail();
 	}
@@ -63,7 +58,7 @@ else{
 		putenv("GNUPGHOME=/tmp");
 		$gnupg_obj = gnupg_init();
 		gnupg_setarmor($gnupg_obj, 1);
-		$passphrase = $_SESSION['passphrase'];
+		$passphrase = $_POST['passphrase'];
 		$fingerprints = gnupg_import($gnupg_obj, file_get_contents("/var/web-sensitive/main.sec"));
 		$pa = file_get_contents("/var/web-sensitive/secret");
 		gnupg_adddecryptkey($gnupg_obj, $fingerprints['fingerprint'], $pa);
@@ -72,13 +67,10 @@ else{
 		$fingerprints = gnupg_import($gnupg_obj,file_get_contents($keydir.$username.".sec"));
 		$fingerprint = $fingerprints['fingerprint'];
 		if(gnupg_adddecryptkey($gnupg_obj,$fingerprint,$passphrase)){
-			$passphrase = NULL;
-			$plaintext = "";
 			$plaintext = gnupg_decrypt($gnupg_obj,file_get_contents($notedir.$target));
-			print_head();
-			echo "<div id='content'>";
-			echo $plaintext;
-			echo "</br></br></br>";
+			$plaintext = GibberishAES::enc($plaintext, $passphrase);
+			echo "<span id='plaintext'>".$plaintext."</span>";
+			echo "</br><button type='button' onclick='finish()'>Decrypt</button></br></br>";
 			$sender= substr($target, 1, -10); #Need to implement actual key verification.
 			echo "Sent by: ".$sender;
 			echo "</br></br></br>";
@@ -88,8 +80,6 @@ else{
 			echo "<a href='/index.php'>Home</a></br>
 				<a href='/php/notes.php?return=".$sender."'>Reply</a></div>";
 			gnupg_cleardecryptkeys($gnupg_obj);
-			$_SESSION['passphrase']= NULL;
-			print_tail();
 		}
 		else{
 			header("Location: /index.php");
